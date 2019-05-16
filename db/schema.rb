@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_16_115610) do
+ActiveRecord::Schema.define(version: 2019_05_16_215519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cars", force: :cascade do |t|
+    t.string "car_brand"
+    t.string "state_number"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cars_on_user_id"
+  end
 
   create_table "orders", force: :cascade do |t|
     t.integer "number"
@@ -21,6 +30,8 @@ ActiveRecord::Schema.define(version: 2019_05_16_115610) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "car_id"
+    t.index ["car_id"], name: "index_orders_on_car_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -45,5 +56,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_115610) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cars", "users"
+  add_foreign_key "orders", "cars"
   add_foreign_key "orders", "users"
 end
