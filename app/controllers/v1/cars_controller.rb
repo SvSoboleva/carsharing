@@ -1,11 +1,11 @@
 class V1::CarsController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_car, only: [:show, :update, :destroy]
 
 
   def index
     @cars = Car.order('created_at DESC')
-    render json: @cars, status: :ok
+    render :index, status: :ok
   end  
 
   def show

@@ -8,7 +8,7 @@ class V1::OrdersController < ApplicationController
   end  
 
   def show
-    render :show, locals: { order: @order, user: set_user(@order) }, status: :ok
+    render :show, locals: { order: @order, user: set_user(@order), car: set_car(@order) }, status: :ok
   end  
 
   def create
@@ -53,5 +53,9 @@ class V1::OrdersController < ApplicationController
 
   def set_user(order)
     User.find_by(id: order.user_id)
+  end
+
+  def set_car(order)
+    Car.find_by(id: order.car_id)
   end
 end
