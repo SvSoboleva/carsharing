@@ -13,8 +13,7 @@ class V1::CarsController < ApplicationController
   end  
 
   def create
-    #@order = current_user.orders.build(order_params)
-    @car = Car.new(car_params)
+    @car = current_user.cars.build(car_params)
 
     if @car.save
       render json:  @car, status: :created
@@ -45,7 +44,7 @@ class V1::CarsController < ApplicationController
   private
 
   def car_params
-    params.require(:car).permit(:state_number, :car_brand, :user_id)
+    params.require(:car).permit(:state_number, :car_brand)
   end  
 
   def set_car

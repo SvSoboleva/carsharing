@@ -16,7 +16,7 @@ class V1::OrdersController < ApplicationController
     #@order = Order.new(order_params)
 
     if @order.save
-      render :created, status: :created
+      render :create, locals: { order: @order }, status: :created
     else
       render json: {status: 'ERROR', message: 'Order not saved', 
                     data: @order.errors}, status: :unprocessable_entity
