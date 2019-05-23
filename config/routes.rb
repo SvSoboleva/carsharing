@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   namespace :v1, defaults: { format: :json } do
     resources :users, only: [:create]
     resources :orders
-    resources :cars
+    resources :cars do
+      resources :telemetries, only: [:create]
+    end  
   end
 end
