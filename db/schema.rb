@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_185623) do
+ActiveRecord::Schema.define(version: 2019_05_28_182658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 2019_05_23_185623) do
     t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.binary "ignition", default: "false"
+    t.binary "engine_started", default: "false"
+    t.binary "lights", default: "false"
+    t.float "latitude"
+    t.float "longtitude"
+    t.float "altitude"
+    t.bigint "device_id"
     t.index ["car_id"], name: "index_telemetries_on_car_id"
     t.index ["order_id"], name: "index_telemetries_on_order_id"
   end

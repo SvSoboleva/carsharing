@@ -15,7 +15,9 @@ class V1::TelemetriesController < ApplicationController
   private
 
   def telemetry_params
-    params.require(:telemetry).permit(:car__id, :oil_level, :speed, :mileage)
+    params.require(:telemetry).
+      permit(:car__id, :oil_level, :speed, :ignition, :latitude, :longtitude,
+             :engine_started, :lights, :altitude, :device_id)
   end  
 
   def set_car
